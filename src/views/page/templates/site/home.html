@@ -1,6 +1,32 @@
 <div data-template="site/home">
-  @@include('components/video.html')
-  @@include('components/intro.html')
-  @@include('components/carousel.html')
-  @@include('components/contact.html')
+  <!-- <ol data-name="todoList" data-list='{"prop": "todoList", "sub": "<li>Congrats! Your To Do list is empty.</li>", "vars": {"v": "todo"}}'>
+    <li>
+        {todo}
+        <button data-act="click" data-func="removeItem">-</button>
+      </li>
+    </ol>
+    <form data-act="submit" data-func="addItem">
+      <input data-name="input" type="text" required="required" maxlength="64" placeholder="Add a new todo ..." />
+      <button>+</button>
+    </form> -->
+    <!-- <form data-act="submit" data-func="show">
+      <input data-name="calInput" type="text" required="required" maxlength="64" placeholder="Add a new cal ..." />
+      <button >Show</button>
+      <div class="box" data-name="mul" data-list='{"prop": "mul","vars": {"v": "todoS"}}'>
+        <p data-val="todoS">{todoS}</p>
+      </div> 
+      <div class="box" data-name="sum" data-list='{"prop": "sum", "vars": {"v": "sunList"}}'>
+        <p data-val="sumList">{sunList}</p>
+      </div>
+    </form>
+  </div> -->
+  <label for="domTextElement">Name: </label>
+  <input type="text" id="domTextElement" > 
+  
+  <button type="button"  data-func="getValueInput" data-act="click"> 
+      click me!! 
+  </button> 
+  
+  <p id="valueInput"></p> 
+  <p>Solution is here: <span id="sumRes"></span></p>
 </div>

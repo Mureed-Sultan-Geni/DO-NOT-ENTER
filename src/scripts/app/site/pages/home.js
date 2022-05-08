@@ -1,44 +1,42 @@
-import homeData from 'data/home.json';
 import getComp from 'setjs/template/component.js';
-import {debounce} from 'setjs/utility/calls.js';
-import timeliner from 'helpers/timeliner.js';
 
 export default {
   templates: ['site/home'],
-  loaded: function({pageComp}) {
-    $win.on('resize.home timeline.home', debounce(setupTimeline));
-    $win.on('progress.home', carouselProgress);
-    setupTimeline();
 
-    function setupTimeline() {
-      let {timeline, scrollMax, targets} = timeliner(pageComp.$root, homeData);
-      let oldProgress = -1;
-      $doc.off('.tl2').on('scroll.tl2', seek);
-      $win.off('scrollPage').on('scrollPage', scrollPage);
-      seek();
+  comp: function () {
+    // var todoList = [
+    //   '🏠 Clean the house',
+    //   '🥛 Buy milk',
+    //   '🍕 Less Pizza',
+    //   '🍩 More Donuts',
+    // ];
+    // let mul = [];
+    var todoComp = getComp('site/home', 
+    // { mul, sum }, { show }
+    );
+    // let sum = 0;
+    return todoComp;
+    // function addItem() {
+    //   todoList.push(todoComp.$input.val());
+    //   let a=todoComp.$input.val();
+    //   console.log(a);
+    //   todoComp.renderList('todoList');
+    //   todoComp.$input.val('');
+    // }
 
-      function triggers() {
-        let progress = 100 * $doc.scrollTop() / scrollMax;
-        $win.trigger('progress', {progress, forward: progress > oldProgress, targets});
-        oldProgress = progress;
-      }
+    // function removeItem({ data }) {
+    //   todoList.splice(data.key, 1);
+    //   todoComp.renderList('todoList');
+    // }
 
-      function scrollPage(e, perc) {
-        $doc.scrollTop(perc / 100 * scrollMax);
-      }
-
-      function seek() {
-        timeline.seek($doc.scrollTop());
-        triggers();
-      }
-    }
-
-    function carouselProgress(e, opts) {
-      let $slides = $('#carousel-slides-1');
-      $slides.css('left', $('#carousel-1').width() - $slides.outerWidth() * opts.targets.carousel_slides_1.progress);
-    }
+    
+    // function show() {
+    //   let b = todoComp.$calInput.val()
+    //   sum = [...sum + b]; 
+    //   mul.push(todoComp.$calInput.val());
+    //   todoComp.renderList('mul');
+    //   todoComp.render('sum')
+    // }
   },
-  comp: function() {
-    return getComp('site/home');
-  }
 };
+
